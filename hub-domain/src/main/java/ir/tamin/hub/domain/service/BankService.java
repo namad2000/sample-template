@@ -10,12 +10,17 @@ import ir.tamin.hub.domain.enumaration.BankEnum;
 import ir.tamin.hub.domain.model.Bank;
 import ir.tamin.hub.domain.repository.BankRepository;
 import ir.tamin.hub.domain.validator.BankServiceValidator;
+import lombok.RequiredArgsConstructor;
 
 import static io.qoop.fault.handler.api.presentation.HttpStatus.NOT_FOUND;
 import static ir.tamin.hub.domain.exception.BanckExceptionCode.BANK_NOT_FOUND;
 
 @DomainService
-public record BankService(BankRepository bankRepository, BankServiceValidator bankServiceValidator) {
+@RequiredArgsConstructor
+public class BankService {
+
+    private final BankRepository bankRepository;
+    private final BankServiceValidator bankServiceValidator;
 
     public Bank create(BankEnum code, String name, boolean active) {
         bankServiceValidator.validateBankIsUnique(code);

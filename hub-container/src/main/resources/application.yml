@@ -1,17 +1,23 @@
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /api
+
 spring:
   application:
-    name: online-shop
+    name: hub
   main:
     banner-mode: off
-
-  threads:
-    virtual:
-      enabled: true
+  profiles:
+    active: @spring.profiles.active@
+  web:
+    locale: fa_IR
+    locale-resolver: accept-header
 
   datasource:
-    url: jdbc:postgresql://172.16.15.22:5432/postgres
-    username: postgres
-    password: 1234
+    url: jdbc:oracle:thin:@//DB3RH:1521/setadidevdb.tamin.org
+    username: acc115597
+    password: account
 
     hikari:
       connection-timeout: 20000
@@ -22,26 +28,12 @@ spring:
     show-sql: true
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.OracleDialect
         format_sql: true
-  data:
-    redis:
-      host: 172.16.15.69
-      port: 6379
-      timeout: 5000ms
-      lettuce:
-        pool:
-          max-active: 8
-          max-idle: 8
-          min-idle: 0
 
-server:
-  port: 8082
-  servlet:
-    context-path: /api
-
-scan:
-  packages: ir.online
+  threads:
+    virtual:
+      enabled: true
 
 discovery:
   service:
@@ -53,25 +45,12 @@ discovery:
     ip-address: ${SELF_IP_ADDRESS:192.168.30.100}
     port: ${SELF_PORT:${server.port}}
 
-otp:
-  expiration-time: 300  # 5 دقیقه به ثانیه
-  max-attempts: 3
-  resend-cooldown: 60   # 1 دقیقه به
-
 doc:
-  title: Online Shop
-  version: 1.0.0 #${project.version}
-  description: Shop For Younger ...
+  title: Hub
+  version: @project.version@
+  description: Hub for Payment ...
   server:
     url: /api
 
-logging:
-  graylog:
-    enabled: false #If false, you will only see logs in the console.
-    host: 172.16.20.50
-
-security:
-  oauth2:
-    resourceserver:
-      jwt:
-        jwk-set-uri: http://192.168.20.30/jwt
+scan:
+  packages: ir.tamin

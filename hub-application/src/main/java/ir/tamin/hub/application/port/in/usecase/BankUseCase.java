@@ -7,12 +7,16 @@ import ir.tamin.hub.application.port.in.model.cmd.CreateBankCmd;
 import ir.tamin.hub.application.port.in.model.result.BankResult;
 import ir.tamin.hub.domain.model.Bank;
 import ir.tamin.hub.domain.service.BankService;
+import lombok.RequiredArgsConstructor;
 
 @UseCaseService
-public record BankUseCase(BankService bankService) {
+@RequiredArgsConstructor
+public class BankUseCase {
+
+    private final BankService bankService;
 
     public BankResult create(@IsValid CreateBankCmd createBankCmd) {
-        Bank bank = bankService().create(
+        Bank bank = bankService.create(
                 createBankCmd.getBankCode(),
                 createBankCmd.getBankName(),
                 createBankCmd.isActive()
