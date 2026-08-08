@@ -10,9 +10,9 @@ spring:
     banner-mode: off
   profiles:
     active: @spring.profiles.active@
-  web:
-    locale: fa_IR
-    locale-resolver: accept-header
+#  web:
+#    locale: fa_IR
+#    locale-resolver: accept-header
 
   datasource:
     url: jdbc:oracle:thin:@//DB3RH:1521/setadidevdb.tamin.org
