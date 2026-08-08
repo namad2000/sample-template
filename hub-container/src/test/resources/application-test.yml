@@ -31,9 +31,6 @@ server:
     context-path: /api
 
 
-hub:
-  baseUrl: http://172.16.15.21:8080/hub/api
-
 local:
   server:
     port: 8080
