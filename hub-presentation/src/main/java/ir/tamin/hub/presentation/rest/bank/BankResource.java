@@ -1,4 +1,4 @@
-package ir.tamin.hub.presentation.rest;
+package ir.tamin.hub.presentation.rest.bank;
 
 
 import ir.tamin.hub.application.port.in.model.cmd.CreateBankCmd;
