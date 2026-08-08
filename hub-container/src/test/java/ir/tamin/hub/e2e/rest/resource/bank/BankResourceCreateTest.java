@@ -40,7 +40,7 @@ class BankResourceCreateTest extends BaseTest {
                 .then()
                 .statusCode(422)
                 .body("code", equalTo("BANK_03"))
-                .body("message", equalTo("BANK_03"))
+                .body("message", equalTo("کد بانک 'REFAH' تکراری است!"))
                 .body("correlationId", notNullValue());
     }
 }
