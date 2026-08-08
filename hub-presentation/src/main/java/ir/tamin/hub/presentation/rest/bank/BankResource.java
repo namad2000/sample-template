@@ -22,7 +22,7 @@ public class BankResource {
     private final BankCommandMapper bankCommandMapper;
 
     @PostMapping("/create")
-    public BankResponse create(@RequestBody CreateBankRequest request) {
+    public BankResponse create(@RequestBody /*@Valid*/ CreateBankRequest request) {
         CreateBankCmd command = bankCommandMapper.toCommand(request);
         BankResult productResult = bankUseCase.create(command);
 
