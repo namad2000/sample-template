@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateBankRequest {
-    @NotNull(message = BanckResoucreExceptionCode.BANK_CODE_NOT_Null)
+    @NotNull
     private BankEnum bankCode;
 
     @NotEmpty(message = BanckResoucreExceptionCode.BANK_NAME_NOT_EMPTY)
