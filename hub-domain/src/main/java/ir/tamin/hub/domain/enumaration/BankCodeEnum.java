@@ -8,7 +8,6 @@ import lombok.Getter;
  * Email: daak1365@gmail.com
  */
 
-@Getter
 @AllArgsConstructor
 public enum BankCodeEnum {
     REFAH("REFAH", "بانک رفاه"),
@@ -22,8 +21,26 @@ public enum BankCodeEnum {
     POSTBANK("POSTBANK", "پست بانک"),
     SARMAYEH("SARMAYEH", "بانک سرمایه"),
     TFH("TFH", "درگاه سازمان تامین اجتماعی"),
-    PC_POS("PC_POS", "پرداخت از طریق دستگاه کارت خوان");
+    PC_POS("PC_POS", "پرداخت از طریق دستگاه کارت خوان"),
+    CREDIT("CREDIT", "پرداخت از اعتبار", false, false);
 
+    @Getter
     private final String code;
+
+    @Getter
     private final String name;
+    private final boolean hasAccountNumber;
+    private final boolean shouldVerify;
+
+    BankCodeEnum(String code, String name) {
+        this(code, name, true, true);
+    }
+
+    public boolean hasAccountNumber() {
+        return hasAccountNumber;
+    }
+
+    public boolean shouldVerify() {
+        return shouldVerify;
+    }
 }

@@ -4,7 +4,7 @@ import io.qoop.builder.specification.api.model.FilterWrapper;
 import io.qoop.builder.specification.api.model.SortWrapper;
 import io.qoop.domain.model.PageFilterData;
 import io.qoop.fault.handler.api.exception.DomainException;
-import ir.tamin.hub.domain.enumaration.BankEnum;
+import ir.tamin.hub.domain.enumaration.BankCodeEnum;
 import ir.tamin.hub.domain.model.Bank;
 import ir.tamin.hub.domain.repository.BankRepository;
 import ir.tamin.hub.domain.validator.BankServiceValidator;
@@ -47,7 +47,7 @@ class BankServiceTest {
     @DisplayName("Should validate uniqueness and create bank successfully")
     void create_ShouldValidateUniquenessAndSaveBank() {
         // Given
-        BankEnum code = BankEnum.MELLI;
+        BankCodeEnum code = BankCodeEnum.MELLI;
         String name = "Melli Bank";
         boolean active = true;
 
@@ -81,7 +81,7 @@ class BankServiceTest {
     void update_ShouldValidateAndSaveBank() {
         // Given
         Bank bankToUpdate = Bank.builder()
-                .code(BankEnum.MELLAT)
+                .code(BankCodeEnum.MELLAT)
                 .name("Mellat Bank")
                 .active(true)
                 .build();

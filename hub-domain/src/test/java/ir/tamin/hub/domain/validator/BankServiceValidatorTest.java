@@ -2,7 +2,7 @@ package ir.tamin.hub.domain.validator;
 
 import io.qoop.fault.handler.api.exception.DomainBusinessException;
 import io.qoop.fault.handler.api.exception.DomainException;
-import ir.tamin.hub.domain.enumaration.BankEnum;
+import ir.tamin.hub.domain.enumaration.BankCodeEnum;
 import ir.tamin.hub.domain.model.Bank;
 import ir.tamin.hub.domain.repository.BankRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -36,7 +36,7 @@ class BankServiceValidatorTest {
     @DisplayName("Should throw DomainBusinessException when bank code already exists")
     void validateBankIsUnique_WhenBankExists_ShouldThrowDomainBusinessException() {
         // Given
-        BankEnum bankCode = BankEnum.MELLI;
+        BankCodeEnum bankCode = BankCodeEnum.MELLI;
         when(bankRepository.existsByCode(bankCode)).thenReturn(true);
 
         // When & Then
@@ -53,7 +53,7 @@ class BankServiceValidatorTest {
     @DisplayName("Should pass validation when bank code does not exist")
     void validateBankIsUnique_WhenBankDoesNotExist_ShouldNotThrowException() {
         // Given
-        BankEnum bankCode = BankEnum.MELLAT;
+        BankCodeEnum bankCode = BankCodeEnum.MELLAT;
         when(bankRepository.existsByCode(bankCode)).thenReturn(false);
 
         // When & Then

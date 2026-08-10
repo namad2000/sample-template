@@ -1,26 +1,26 @@
 package ir.tamin.hub.domain.model;
 
-
-import io.qoop.domain.model.ActiveModel;
+import io.qoop.domain.model.embeddable.AuditingDomain;
 import io.qoop.fault.handler.api.exception.DomainBusinessException;
-import ir.tamin.hub.domain.enumaration.BankEnum;
+import ir.tamin.hub.domain.enumaration.BankCodeEnum;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import static ir.tamin.hub.domain.exception.BanckExceptionCode.BANK_IS_INACTIVE;
 
 /**
- * Author: davood akbari
- * Email: daak1365@gmail.com
+ * Domain equivalent of TbCfgBank
  */
-
-@Setter
 @Getter
+@Setter
+@NoArgsConstructor
 @SuperBuilder
-public class Bank extends ActiveModel<Long> {
-    private BankEnum code;
+public class Bank extends AuditingDomain<Long> {
+    private BankCodeEnum code;
     private String name;
+    private boolean active;
 
     public void validateIdIsActive() {
         if (!isActive()) {

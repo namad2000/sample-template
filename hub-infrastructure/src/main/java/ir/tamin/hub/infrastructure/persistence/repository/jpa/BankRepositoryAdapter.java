@@ -1,13 +1,12 @@
 package ir.tamin.hub.infrastructure.persistence.repository.jpa;
 
-
 import io.qoop.builder.specification.api.model.FilterWrapper;
 import io.qoop.builder.specification.api.model.SortWrapper;
 import io.qoop.domain.model.PageFilterData;
-import ir.tamin.hub.domain.enumaration.BankEnum;
+import ir.tamin.hub.domain.enumaration.BankCodeEnum;
 import ir.tamin.hub.domain.model.Bank;
 import ir.tamin.hub.domain.repository.BankRepository;
-import ir.tamin.hub.infrastructure.persistence.entity.BankEntity;
+import ir.tamin.hub.infrastructure.persistence.entity.CfgBankEntity;
 import ir.tamin.hub.infrastructure.persistence.mapper.BankMapper;
 import ir.tamin.hub.infrastructure.persistence.repository.jpa.spring.BankJpaRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +25,7 @@ public class BankRepositoryAdapter implements BankRepository {
 
     @Override
     public Bank save(Bank domain) {
-        BankEntity entity = bankMapper.toTarget(domain);
+        CfgBankEntity entity = bankMapper.toTarget(domain);
         entity = bankJpaRepository.save(entity);
         return bankMapper.toSource(entity);
     }
@@ -56,12 +55,12 @@ public class BankRepositoryAdapter implements BankRepository {
 
     @Override
     public PageFilterData<Bank> findAll(FilterWrapper filterWrapper, SortWrapper sortWrapper, Integer start, Integer limit) {
-        Page<BankEntity> allUsers = bankJpaRepository.findAll(filterWrapper, sortWrapper, start, limit);
+        Page<CfgBankEntity> allUsers = bankJpaRepository.findAll(filterWrapper, sortWrapper, start, limit);
         return bankMapper.toPageFilterData(allUsers);
     }
 
     @Override
-    public boolean existsByCode(BankEnum code) {
+    public boolean existsByCode(BankCodeEnum code) {
         return bankJpaRepository.existsByCode(code);
     }
 }

@@ -10,9 +10,6 @@ spring:
     banner-mode: off
   profiles:
     active: @spring.profiles.active@
-#  web:
-#    locale: fa_IR
-#    locale-resolver: accept-header
 
   datasource:
     url: jdbc:oracle:thin:@//DB3RH:1521/setadidevdb.tamin.org
@@ -24,7 +21,7 @@ spring:
       maximum-pool-size: 10
   jpa:
     hibernate:
-      ddl-auto: validate  # (validate, update, create, create-drop)
+      ddl-auto: none  # (validate, update, create, create-drop)
     show-sql: true
     properties:
       hibernate:

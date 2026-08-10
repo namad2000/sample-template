@@ -1,7 +1,7 @@
 package ir.tamin.hub.presentation.dto.response;
 
 
-import ir.tamin.hub.domain.enumaration.BankEnum;
+import ir.tamin.hub.domain.enumaration.BankCodeEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
@@ -15,6 +15,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @SuperBuilder
 public class BankResponse {
-    private BankEnum code;
-    private String name;
+    private BankCodeEnum bankCode;
+    private String bankName;
+    private boolean active;
 }

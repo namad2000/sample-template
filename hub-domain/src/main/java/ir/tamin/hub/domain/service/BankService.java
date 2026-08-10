@@ -6,7 +6,7 @@ import io.qoop.builder.specification.api.model.SortWrapper;
 import io.qoop.domain.model.PageFilterData;
 import io.qoop.fault.handler.api.exception.DomainBusinessException;
 import io.qoop.filter.bean.api.DomainService;
-import ir.tamin.hub.domain.enumaration.BankEnum;
+import ir.tamin.hub.domain.enumaration.BankCodeEnum;
 import ir.tamin.hub.domain.model.Bank;
 import ir.tamin.hub.domain.repository.BankRepository;
 import ir.tamin.hub.domain.validator.BankServiceValidator;
@@ -22,7 +22,7 @@ public class BankService {
     private final BankRepository bankRepository;
     private final BankServiceValidator bankServiceValidator;
 
-    public Bank create(BankEnum code, String name, boolean active) {
+    public Bank create(BankCodeEnum code, String name, boolean active) {
         bankServiceValidator.validateBankIsUnique(code);
         return bankRepository.save(
                 Bank.builder()
