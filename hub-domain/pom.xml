@@ -40,6 +40,11 @@
 
         <dependency>
             <groupId>io.qoop</groupId>
+            <artifactId>qoop-logs-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qoop</groupId>
             <artifactId>qoop-security-api</artifactId>
         </dependency>
     </dependencies>

@@ -4,6 +4,8 @@ package ir.tamin.hub.presentation.rest.bank;
 import io.qoop.builder.specification.api.model.FilterWrapper;
 import io.qoop.builder.specification.api.model.SortWrapper;
 import io.qoop.domain.model.PageFilterData;
+import io.qoop.logs.DomainLogger;
+import io.qoop.logs.annotation.Logged;
 import io.qoop.security.api.CurrentUser;
 import io.qoop.security.api.User;
 import ir.tamin.hub.application.port.in.model.cmd.CreateBankCmd;
@@ -25,10 +27,12 @@ import static ir.tamin.hub.presentation.rest.bank.BanckResoucreExceptionCode.LIM
 @RestController
 @RequestMapping("/bank")
 @RequiredArgsConstructor
+@Logged("HUB-RESOURCE-BANK")
 public class BankResource {
 
     private final BankUseCase bankUseCase;
     private final BankCommandMapper bankCommandMapper;
+    private final DomainLogger logger;
 
     @PostMapping("/create")
     public BankResponse create(@RequestBody @Valid CreateBankRequest request) {
@@ -47,12 +51,15 @@ public class BankResource {
     @GetMapping("/get-User-pre-authorize")
     @PreAuthorize("hasRole('ALL USERS')")
     public User getUserPreAuthorize(@CurrentUser User user) {
+        logger.info("Get User PreAuthorize with user name: {}", user.getName());
+        logger.warnWithKey("HUB-RESOURCE-BANK-TEST-KEY", "Get User PreAuthorize with user name: {}", user.getName());
         return user;
     }
 
     @GetMapping("/get-User-roles-allowed-forbidden")
     @RolesAllowed({"forbidden USERS"})
     public User getUserRolesAllowedForbidden(@CurrentUser User user) {
+
         return user;
     }
 
