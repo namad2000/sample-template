@@ -64,3 +64,8 @@ security:
   oauth2:
     jwt:
       jwk-set-uri: https://account-pilot.tamin.ir/auth/.well-known/jwks.json
+
+error:
+  internal:
+    message:
+      show: true
