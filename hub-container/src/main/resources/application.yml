@@ -2,6 +2,7 @@ server:
   port: ${SERVER_PORT:8080}
   servlet:
     context-path: /api
+  max-http-request-header-size: 128KB
 
 spring:
   application:
@@ -9,7 +10,9 @@ spring:
   main:
     banner-mode: off
   profiles:
-    active: @spring.profiles.active@
+    active:
+      - "@spring.profiles.active@"
+      - "@security.profile@"
 
   datasource:
     url: jdbc:oracle:thin:@//DB3RH:1521/setadidevdb.tamin.org
@@ -51,3 +54,13 @@ doc:
 
 scan:
   packages: ir.tamin
+
+security:
+  whitelist-urls:
+    - /actuator/health
+    - /swagger-ui/**
+    - /v3/api-docs/**
+    - /swagger-ui.html
+  oauth2:
+    jwt:
+      jwk-set-uri: https://account-pilot.tamin.ir/auth/.well-known/jwks.json

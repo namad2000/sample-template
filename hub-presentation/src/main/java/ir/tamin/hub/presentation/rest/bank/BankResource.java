@@ -4,15 +4,20 @@ package ir.tamin.hub.presentation.rest.bank;
 import io.qoop.builder.specification.api.model.FilterWrapper;
 import io.qoop.builder.specification.api.model.SortWrapper;
 import io.qoop.domain.model.PageFilterData;
+import io.qoop.security.api.CurrentUser;
+import io.qoop.security.api.User;
 import ir.tamin.hub.application.port.in.model.cmd.CreateBankCmd;
 import ir.tamin.hub.application.port.in.model.result.BankResult;
 import ir.tamin.hub.application.port.in.usecase.BankUseCase;
 import ir.tamin.hub.presentation.dto.request.CreateBankRequest;
 import ir.tamin.hub.presentation.dto.response.BankResponse;
+import ir.tamin.hub.presentation.identity.Roles;
 import ir.tamin.hub.presentation.mapper.BankCommandMapper;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import static ir.tamin.hub.presentation.rest.bank.BanckResoucreExceptionCode.LIMIT_MAX_MESSAGE;
@@ -31,6 +36,30 @@ public class BankResource {
         BankResult productResult = bankUseCase.create(command);
 
         return bankCommandMapper.toResponse(productResult);
+    }
+
+    @GetMapping("/get-User-roles-allowed")
+    @RolesAllowed({Roles.ALL_USERS})
+    public User getUserRolesAllowed(@CurrentUser User user) {
+        return user;
+    }
+
+    @GetMapping("/get-User-pre-authorize")
+    @PreAuthorize("hasRole('ALL USERS')")
+    public User getUserPreAuthorize(@CurrentUser User user) {
+        return user;
+    }
+
+    @GetMapping("/get-User-roles-allowed-forbidden")
+    @RolesAllowed({"forbidden USERS"})
+    public User getUserRolesAllowedForbidden(@CurrentUser User user) {
+        return user;
+    }
+
+    @GetMapping("/get-User-pre-authorize-forbidden")
+    @PreAuthorize("hasRole('forbidden USERS')")
+    public User getUserPreAuthorizeForbidden(@CurrentUser User user) {
+        return user;
     }
 
     @GetMapping
