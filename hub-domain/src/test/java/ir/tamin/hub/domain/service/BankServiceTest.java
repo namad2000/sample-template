@@ -4,6 +4,7 @@ import io.qoop.builder.specification.api.model.FilterWrapper;
 import io.qoop.builder.specification.api.model.SortWrapper;
 import io.qoop.domain.model.PageFilterData;
 import io.qoop.fault.handler.api.exception.DomainException;
+import io.qoop.logs.DomainLogger;
 import ir.tamin.hub.domain.enumaration.BankCodeEnum;
 import ir.tamin.hub.domain.model.Bank;
 import ir.tamin.hub.domain.repository.BankRepository;
@@ -34,6 +35,9 @@ class BankServiceTest {
 
     @Mock
     private BankRepository bankRepository;
+
+    @Mock
+    private DomainLogger logger;
 
     @Mock
     private BankServiceValidator bankServiceValidator;
